@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken'
+
 export const users = []
 
 export const loginController = (req, res) => {
@@ -16,15 +18,15 @@ export const loginController = (req, res) => {
     return res.status(400).json({ message: 'Пароль неверный' })
   }
 
-  // 1. Создается токен - safasgfg43rtrewt4354t4stg12к43к43 -
-  // 2. Вшиваем токен в куки - поставив флаг - javascript не должен видеть!!!
-  // 3. Мы ему отправляем id: 123.
+  const token = jwt.sign({ phone, roles: users[idx].roles }, 'node.js', {
+    expiresIn: '8h',
+  })
 
-  return res.json({ message: 'Добро пожаловать!!!' })
+  return res.json({ token, usersDetails: users.details })
 }
 
 export const registerController = (req, res) => {
-  const { phone = null, password = null } = req.body
+  const { phone = null, password = null, roles = ['USER'] } = req.body
 
   if (!phone || !password) {
     return res.status(400).json({ message: 'Отсутствует номер или пароль' })
@@ -39,6 +41,7 @@ export const registerController = (req, res) => {
   users.push({
     phone,
     password,
+    roles,
   })
 
   res.status(201).json({ message: 'Пользователь был успешно создан' })
