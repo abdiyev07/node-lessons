@@ -1,1 +1,0 @@
-(()=>{"use strict";let e=0;window.addEventListener("click",(()=>{e++,console.log(e)}))})();

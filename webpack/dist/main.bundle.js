@@ -1,1 +1,0 @@
-(()=>{"use strict";new class{constructor(s,e){this.name=s,this.age=e}sayHello(){console.log(`Hello, my name is ${this.name}. I am ${this.age} years old`)}}("John",23).sayHello()})();
