@@ -1,0 +1,43 @@
+$main-color: blue;
+
+@mixin main-text {
+  color: black;
+  font-weight: 600;
+}
+
+.container {
+  font-size: 3rem;
+  color: $main-color;
+  text-align: center;
+
+  &__title {
+    font-size: 4rem;
+    @include main-text;
+
+    &_active {
+      color: $main-color;
+    }
+  }
+}
+
+.container {
+  font-size: 3rem;
+  color: red;
+  text-align: center;
+}
+
+.container__title {
+  font-size: 4rem;
+}
+
+.container__title_active {
+  color: green;
+}
+
+.logo {
+  background-image: url('../assets/webpack.png');
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
